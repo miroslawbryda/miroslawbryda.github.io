@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rabbeat Recordings</title>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Montserrat',sans-serif; background:#000; color:#fff; min-height:100vh; overflow-x:hidden; }
+
+/* PRELOADER */
+.preloader { position:fixed; inset:0; background:#000; display:flex; align-items:center; justify-content:center; z-index:2000; }
+.preloader img { width:160px; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+/* HERO */
+.hero { position:relative; width:100%; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; flex-direction:column; padding:20px; }
+.hero-bg { position:fixed; inset:0; background:url('background.png') center/cover no-repeat; transform:scale(1.1); will-change:transform; z-index:-2; }
+.hero-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:-1; }
+.hero-content { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; max-width:900px; width:100%; }
+
+/* LOGO + TEXT */
+.logo { max-width:220px; margin-bottom:20px; }
+.logo img { width:100%; }
+h1 { font-size:clamp(2rem,5vw,3.5rem); letter-spacing:2px; color:#D52374; }
+p { font-size:1.1rem; letter-spacing:1px; color:#D52374; }
+
+/* SOCIAL ICONS */
+.social-icons { display:flex; justify-content:center; gap:50px; flex-wrap:wrap; margin-bottom:30px; }
+.social-icons a {
+  display:inline-block;
+  font-size:5rem; /* większe niż przyciski play */
+  color:#D52374;
+  opacity:0;
+  animation: fadeIn 0.6s forwards;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.social-icons a:hover {
+  transform:scale(1.25);
+  filter:drop-shadow(0 0 16px rgba(213,35,116,0.7));
+}
+.social-icons a:nth-child(1){animation-delay:.1s;}
+.social-icons a:nth-child(2){animation-delay:.2s;}
+.social-icons a:nth-child(3){animation-delay:.3s;}
+.social-icons a:nth-child(4){animation-delay:.4s;}
+.social-icons a:nth-child(5){animation-delay:.5s;}
+.social-icons a:nth-child(6){animation-delay:.6s;}
+.social-icons a:nth-child(7){animation-delay:.7s;}
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+/* PLAY ICONS */
+.play-icon-container { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:20px; }
+.play-button { display:flex; flex-direction:column; align-items:center; cursor:pointer; }
+.play-icon { font-size:3.2rem; color:#D52374; animation:playPulse 1.5s infinite ease-in-out; transition:transform 0.3s, filter 0.3s; }
+.play-icon:hover { transform:scale(1.2); filter:drop-shadow(0 0 16px rgba(213,35,116,0.7)); }
+.play-text { margin-top:10px; font-size:1rem; color:#fff; letter-spacing:1px; opacity:0.8; }
+@keyframes playPulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.08);} }
+
+/* PLAYER CONTAINERS */
+.player-container { margin-top:20px; width:100%; max-width:900px; margin-left:auto; margin-right:auto; display:none; }
+.player-container iframe { width:100%; height:450px; border:none; border-radius:12px; }
+@media screen and (max-width: 600px) { .player-container iframe { height:350px; } }
+@media screen and (max-width: 400px) { .player-container iframe { height:300px; } }
+
+/* POPUP */
+.contact-popup { position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; align-items:center; justify-content:center; z-index:1500; padding:20px; }
+.contact-box { border:1px solid #D52374; padding:40px 50px; text-align:center; max-width:420px; }
+.contact-box h2 { color:#D52374; margin-bottom:25px; letter-spacing:2px; }
+.contact-box h3 { color:#D52374; margin-top:20px; font-size:1rem; }
+.contact-box p { font-size:.9rem; }
+.close-btn { margin-top:30px; padding:10px 25px; border:1px solid #D52374; color:#D52374; cursor:pointer; }
+.close-btn:hover { background:#D52374; color:#000; }
+
+/* FOOTER */
+footer { padding:20px; text-align:center; font-size:.75rem; color:#777; }
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader">
+  <img src="logo.png">
+</div>
+
+<!-- HERO BACKGROUND -->
+<div class="hero-bg"></div>
+<div class="hero-overlay"></div>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="logo"><img src="logo.png"></div>
+    <h1>RABBEAT RECORDINGS</h1>
+    <p>FEEL THE BEAT. FOLLOW THE RABBEAT.</p>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social-icons">
+      <a href="https://www.facebook.com/rabbeatrecordings" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/rabbeatrecordings/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@rabbeatrecordings" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://soundcloud.com/rabbeat-recordings" target="_blank"><i class="fa-brands fa-soundcloud"></i></a>
+      <a href="https://www.youtube.com/@RabbeatRecordings" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://open.spotify.com/playlist/6QdxQJwJ5Z06gUpisLTDd6" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+      <a onclick="document.querySelector('.contact-popup').style.display='flex'"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+
+    <!-- PLAY BUTTONS -->
+    <div class="play-icon-container">
+      <div class="play-button" onclick="showPlayer('soundcloud')">
+        <div class="play-icon"><i class="fa-brands fa-soundcloud"></i></div>
+        <div class="play-text">Play on SoundCloud</div>
+      </div>
+      <div class="play-button" onclick="showPlayer('spotify')">
+        <div class="play-icon"><i class="fa-brands fa-spotify"></i></div>
+        <div class="play-text">Play on Spotify</div>
+      </div>
+    </div>
+
+    <!-- PLAYERS -->
+    <div class="player-container" id="scPlayerContainer">
+      <iframe id="scPlayerVisual" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/rabbeat-recordings&color=%23D52374&auto_play=false&visual=true">
+      </iframe>
+    </div>
+
+    <div class="player-container" id="spotifyPlayerContainer">
+      <iframe data-testid="embed-iframe"
+        src="https://open.spotify.com/embed/playlist/6QdxQJwJ5Z06gUpisLTDd6?utm_source=generator&theme=0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Rabbeat Recordings</footer>
+
+<!-- CONTACT POPUP -->
+<div class="contact-popup">
+  <div class="contact-box">
+    <h2>CONTACT</h2>
+    <h3>CEO</h3><p>Jakub Stępień<br>j.stepien@rabbeat.pl</p>
+    <h3>A&R Manager</h3><p>Mirosław Bryda<br>m.bryda@rabbeat.pl</p>
+    <h3>A&R Manager</h3><p>Rafał Tokarski<br>r.tokarski@rabbeat.pl</p>
+    <div class="close-btn" onclick="document.querySelector('.contact-popup').style.display='none'">Close</div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+window.addEventListener('load',()=>{ document.querySelector('.preloader').style.display='none'; });
+
+/* PARALLAX */
+window.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-0.5)*10;
+  const y=(e.clientY/window.innerHeight-0.5)*10;
+  document.querySelector('.hero-bg').style.transform=`scale(1.1) translate(${x}px,${y}px)`;
+});
+
+/* PLAYER SWITCH */
+function showPlayer(platform){
+  const sc = document.getElementById('scPlayerContainer');
+  const sp = document.getElementById('spotifyPlayerContainer');
+  if(platform==='soundcloud'){
+    sc.style.display='block';
+    sp.style.display='none';
+    const widget = SC.Widget(document.getElementById('scPlayerVisual'));
+    widget.bind(SC.Widget.Events.READY, function(){ widget.play(); });
+  } else if(platform==='spotify'){
+    sp.style.display='block';
+    sc.style.display='none';
+  }
+}
+</script>
+</body>
+</html>
